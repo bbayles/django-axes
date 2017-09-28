@@ -1,4 +1,5 @@
 from django import apps
+from django.utils.decorators import method_decorator
 
 
 class AppConfig(apps.AppConfig):
@@ -8,4 +9,4 @@ class AppConfig(apps.AppConfig):
         from django.contrib.auth.views import LoginView
         from axes.decorators import watch_login
 
-        LoginView.dispatch = watch_login(LoginView.dispatch)
+        LoginView.dispatch = method_decorator(watch_login)(LoginView.dispatch)
